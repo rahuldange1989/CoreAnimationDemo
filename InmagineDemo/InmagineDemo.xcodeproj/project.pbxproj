@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		5F28984323839BB4009F005D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F28984123839BB4009F005D /* Main.storyboard */; };
 		5F28984523839BB6009F005D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F28984423839BB6009F005D /* Assets.xcassets */; };
 		5F28984823839BB6009F005D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F28984623839BB6009F005D /* LaunchScreen.storyboard */; };
+		5FC5BF3F2383BE5500249A3B /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC5BF3E2383BE5500249A3B /* CanvasView.swift */; };
 		933402F95CDA78BBF150470C /* Pods_InmagineDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729F3CB55140142C92300B8 /* Pods_InmagineDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		5F28984423839BB6009F005D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F28984723839BB6009F005D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F28984923839BB6009F005D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FC5BF3E2383BE5500249A3B /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		B683440ACA280F0EA872CB1E /* Pods-InmagineDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InmagineDemo.debug.xcconfig"; path = "Target Support Files/Pods-InmagineDemo/Pods-InmagineDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F394B007CC7473E4BBECE431 /* Pods-InmagineDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InmagineDemo.release.xcconfig"; path = "Target Support Files/Pods-InmagineDemo/Pods-InmagineDemo.release.xcconfig"; sourceTree = "<group>"; };
 		F729F3CB55140142C92300B8 /* Pods_InmagineDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InmagineDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 				5F28983B23839BB4009F005D /* AppDelegate.swift */,
 				5F28983D23839BB4009F005D /* SceneDelegate.swift */,
 				5F28983F23839BB4009F005D /* ViewController.swift */,
+				5FC5BF3E2383BE5500249A3B /* CanvasView.swift */,
 				5F28984123839BB4009F005D /* Main.storyboard */,
 				5F28984423839BB6009F005D /* Assets.xcassets */,
 				5F28984623839BB6009F005D /* LaunchScreen.storyboard */,
@@ -88,7 +91,6 @@
 				B683440ACA280F0EA872CB1E /* Pods-InmagineDemo.debug.xcconfig */,
 				F394B007CC7473E4BBECE431 /* Pods-InmagineDemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -209,6 +211,7 @@
 			files = (
 				5F28984023839BB4009F005D /* ViewController.swift in Sources */,
 				5F28983C23839BB4009F005D /* AppDelegate.swift in Sources */,
+				5FC5BF3F2383BE5500249A3B /* CanvasView.swift in Sources */,
 				5F28983E23839BB4009F005D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

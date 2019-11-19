@@ -27,23 +27,41 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="150" borderStyle="roundedRect" placeholder="Canvas size." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QB-f4-iyO">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="300" borderStyle="roundedRect" placeholder="Canvas size." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QB-f4-iyO">
                                                 <rect key="frame" x="0.0" y="22" width="276" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-9n-qsT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eao-5I-rCO">
                                         <rect key="frame" x="296" y="0.0" width="98" height="70"/>
-                                        <state key="normal" title="Change"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="7"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JAA-cm-rfa">
+                                                <rect key="frame" x="0.0" y="0.0" width="98" height="17"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="hgY-vu-aCW"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-9n-qsT">
+                                                <rect key="frame" x="0.0" y="17" width="98" height="53"/>
+                                                <state key="normal" title="Change"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="7"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="canvasSizeChanged:" destination="BYZ-38-t0r" eventType="touchUpInside" id="avY-XD-uLh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="TEP-dh-f8D" firstAttribute="width" secondItem="ncP-Q9-das" secondAttribute="width" multiplier="0.7" id="JoQ-AA-92s"/>
@@ -53,12 +71,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efh-uD-6By">
                                 <rect key="frame" x="10" y="200" width="394" height="650"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-pU-Rh3" userLabel="CanvasView">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-pU-Rh3" userLabel="CanvasView" customClass="CanvasView" customModule="InmagineDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="NhR-FX-0JF"/>
-                                            <constraint firstAttribute="height" constant="150" id="iEs-cs-jzS"/>
+                                            <constraint firstAttribute="width" constant="300" id="NhR-FX-0JF"/>
+                                            <constraint firstAttribute="height" constant="300" id="iEs-cs-jzS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -85,8 +103,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Inmagin Demo" id="J2B-Bs-liP">
-                        <barButtonItem key="rightBarButtonItem" title="2x2" id="QWg-fo-LSa"/>
+                        <barButtonItem key="leftBarButtonItem" title="Apply filters" id="Z1a-WN-rIa"/>
+                        <barButtonItem key="rightBarButtonItem" tag="1" title="2x2" id="QWg-fo-LSa">
+                            <connections>
+                                <action selector="changeCanvasLayout:" destination="BYZ-38-t0r" id="jIl-DJ-Lhm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="canvasSizeField" destination="8QB-f4-iyO" id="yJn-Yh-exp"/>
+                        <outlet property="canvasView" destination="Hsr-pU-Rh3" id="SHH-Xf-ZZr"/>
+                        <outlet property="canvasViewHeightConstraint" destination="iEs-cs-jzS" id="dyH-Jz-Olj"/>
+                        <outlet property="canvasViewWidthConstraint" destination="NhR-FX-0JF" id="iY5-R0-xUd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
