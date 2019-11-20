@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     // MARK: - Internal Methods -
     func createImageViews() {
         self.imageView1 = self.createImageView()
+        self.imageView1?.image = UIImage.init(named: "apple")
         self.imageView2 = self.createImageView()
         self.imageView3 = self.createImageView()
         for iv in [imageView1, imageView2, imageView3] {
@@ -82,7 +83,6 @@ class ViewController: UIViewController {
     
     func createImageView() -> UIImageView {
         let imageView = UIImageView.init()
-        imageView.image = UIImage.init(named: "apple")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }
@@ -94,39 +94,34 @@ class ViewController: UIViewController {
             vibranceFilter.avoidsSaturatingSkinTones = true
             vibranceFilter.inputImage = mtImage
             vibranceFilter.amount = Float(amount)
-            
-            if let device = MTLCreateSystemDefaultDevice(),
-                let outputImage = vibranceFilter.outputImage {
-                do {
-                    let context = try MTIContext(device: device)
-                    let filteredImage = try context.makeCGImage(from: outputImage)
-                    DispatchQueue.main.async {
-                        self.imageView2?.image = UIImage(cgImage: filteredImage)
-                    }
-                } catch {
-                    print(error)
-                }
+            if let outputImage = vibranceFilter.outputImage {
+                self.convertMTIImageToCGImage(outputImage: outputImage, imageView: self.imageView2!)
             }
         }
     }
     
-    func applyClaheFilter(image: CGImage) {
+    func applyClaheFilter(image: CGImage, clipLimit: Float) {
         DispatchQueue.global(qos: .background).async {
             let mtImage = MTIImage.init(cgImage: image, options: [MTKTextureLoader.Option.SRGB : false])
             let claheFilter = MTICLAHEFilter.init()
-            claheFilter.clipLimit = 2.0
+            claheFilter.clipLimit = clipLimit
             claheFilter.inputImage = mtImage
-            if let device = MTLCreateSystemDefaultDevice(),
-                let outputImage = claheFilter.outputImage {
-                do {
-                    let context = try MTIContext(device: device)
-                    let filteredImage = try context.makeCGImage(from: outputImage)
-                    DispatchQueue.main.async {
-                       self.imageView3?.image = UIImage(cgImage: filteredImage)
-                    }
-                } catch {
-                    print(error)
+            if let outputImage = claheFilter.outputImage {
+                self.convertMTIImageToCGImage(outputImage: outputImage, imageView: self.imageView3!)
+            }
+        }
+    }
+    
+    func convertMTIImageToCGImage(outputImage: MTIImage, imageView: UIImageView) {
+        if let device = MTLCreateSystemDefaultDevice() {
+            do {
+                let context = try MTIContext(device: device)
+                let filteredImage = try context.makeCGImage(from: outputImage)
+                DispatchQueue.main.async {
+                    imageView.image = UIImage(cgImage: filteredImage)
                 }
+            } catch {
+                print(error)
             }
         }
     }
@@ -165,8 +160,8 @@ class ViewController: UIViewController {
     @IBAction func applyFilters(_ sender: Any) {
         // -- vibrance filter amount used is 2.0
         self.applyVibranceFilter(image: (self.imageView1?.image?.cgImage)!, amount: 2.0)
-        // -- clahe filter
-        self.applyClaheFilter(image: (self.imageView1?.image?.cgImage)!)
+        // -- clahe filter with clip amout 2.0
+        self.applyClaheFilter(image: (self.imageView1?.image?.cgImage)!, clipLimit: 2.0)
     }
 }
 
