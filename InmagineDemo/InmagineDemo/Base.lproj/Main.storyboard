@@ -103,7 +103,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Inmagin Demo" id="J2B-Bs-liP">
-                        <barButtonItem key="leftBarButtonItem" title="Apply filters" id="Z1a-WN-rIa"/>
+                        <barButtonItem key="leftBarButtonItem" title="Apply filters" id="Z1a-WN-rIa">
+                            <connections>
+                                <action selector="applyFilters:" destination="BYZ-38-t0r" id="BGG-cb-eFb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" tag="1" title="2x2" id="QWg-fo-LSa">
                             <connections>
                                 <action selector="changeCanvasLayout:" destination="BYZ-38-t0r" id="jIl-DJ-Lhm"/>
